@@ -39,6 +39,12 @@ public class Aquarium extends GFX {
 		// Here we ask GFX to make our window of size WIDTH and HEIGHT.
 		// Don't change this here, edit the variables instead.
 		super(WIDTH, HEIGHT);
+		
+		// create bubbles
+		bubbles = new Bubble[10];
+		for (int i = 0; i < bubbles.length; i++) {
+			bubbles[i] = new Bubble();
+		}
 	}
 
 	int fish1X = getWidth() + 100;
@@ -49,6 +55,8 @@ public class Aquarium extends GFX {
 	Fish marlin = new Fish(Color.orange, 100, 100, false, false);
 	Fish dory = new Fish(Color.blue, 400, 400, true, false);
 	Fish spot = new Fish(Color.orange, 300, 300, false, true);
+	
+	Bubble[] bubbles;
 
 	@Override
 	public void draw(Graphics2D g) {
@@ -64,12 +72,16 @@ public class Aquarium extends GFX {
 		// What if we wanted this little fish to swim, too?
 		DrawFish.smallFacingLeft(g, Color.red, fish3X, 100);
 		
-		// Fish from lab
-		// DrawFish.smallFacingLeft(g, nemo.color, nemo.x, nemo.y);
+		// Fish from lab draw and move
 		nemo.draw(g);
 		marlin.draw(g);
 		dory.draw(g);
 		spot.draw(g);
+		
+		// Bubbles draw and move
+		for (Bubble bubb : this.bubbles) {
+			bubb.draw(g);
+		}
 
 		// Draw our snail!
 		algorithm.draw(g);
@@ -78,8 +90,7 @@ public class Aquarium extends GFX {
 		fish1X -= 1;
 		fish2X += 2;
 		fish3X -= 4;
-		
-		// Move fish from lab
+				
 		
 		// Wrap fish
 		if (fish3X > getWidth() + 40) {
