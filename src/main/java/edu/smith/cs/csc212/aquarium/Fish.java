@@ -91,13 +91,6 @@ public class Fish {
 		// Move towards destination
 		this.x += dx;
 		this.y += dy;
-		
-		/* 
-		 * if (this.y < this.destY) { this.y += 1; } this.x += 1;
-		 * 
-		 * // fish can turn around in swimming! if (this.y > 400) { this.facingLeft =
-		 * true; }
-		 */
 	}
 	
 	public void destination() {
@@ -107,10 +100,3 @@ public class Fish {
 		this.destY = rand.nextInt(501);
 	}
 }
-
-/**
- * can change window size in Aquarium.java (0,0) in top left g is win
- * smallFacingLeft and smallFacingRight both work screaming colors CYAN and cyan
- * are same thing newlines can go anywhere and the code will still work project
- * > team > commit to Githhub
- */

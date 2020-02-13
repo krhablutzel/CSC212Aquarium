@@ -11,6 +11,7 @@ public class Bubble {
 	// basic Bubble attributes
 	double x;
 	double y;
+	double xCenter;
 	int size;
 	
 	// movement bubble attributes
@@ -19,8 +20,9 @@ public class Bubble {
 		Random rand = new Random();
 		
 		// random initial position
-		this.x = rand.nextInt(200) + 250; // only on right
+		this.x = rand.nextInt(200) + 250; // only on right, xs 250 - 450
 		this.y = rand.nextInt(500);
+		this.xCenter = this.x; // keep track of center of wave
 		
 		// random sizes 5 - 14
 		this.size = rand.nextInt(10) + 5;
@@ -56,12 +58,20 @@ public class Bubble {
 	}
 	
 	public void drift() {
-		// test
-		this.y -= 1;
+		// move up
+		this.y -= 2;
 		
+		// wrap at top
 		if (this.y < -10) {
 			this.y = 510;
 		}
+		
+		// wiggle in sine wave
+		// math from my CSC 111 code (citation sent to JJ)
+		double amplitude = 5;
+		double period = 150;
+		
+		this.x = amplitude * Math.sin(this.y * (2 * Math.PI)/period) + this.xCenter;
 	}
 
 }
